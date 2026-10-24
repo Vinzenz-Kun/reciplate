@@ -6,10 +6,12 @@ Turn an Instagram reel (or a local PDF) into a bilingual LuaLaTeX recipe: German
 
 The master template is never written. The program copies it, fills the copies, then compiles. Python 3.10+. Works on its own; if the toolbox `common/` folder sits next to this one, Reciplate uses that shared UI.
 
+Start `reciplate.py`. Helpers live in `lib/`, tests in `tests/`.
+
 ## Setup
 
 ```text
-copy config.example.json config.json
+copy config.example.json local\config.json
 ```
 
 Set `recipes_root` to your recipes library (`~/Recipes` in the example is expanded). Paths in `template_tex` / `sections` can be relative to that root. Optional: `RECIPLATE_CONFIG` pointing at another JSON file.
@@ -19,7 +21,7 @@ pip install -r requirements.txt
 python reciplate.py
 ```
 
-`config.json` is gitignored. Commit only `config.example.json` (placeholders, no personal paths). Local PDFs need `pypdf` (already in `requirements.txt`).
+`local/config.json` is gitignored. Commit only `config.example.json` (placeholders, no personal paths). Local PDFs need `pypdf` (already in `requirements.txt`).
 
 ## What you get per recipe
 
@@ -58,17 +60,9 @@ LuaLaTeX still has to be installed on the machine (TeX Live or MiKTeX).
 ## Tests
 
 ```text
-python -m unittest discover -s .
+python -m unittest discover -s tests -t .
 ```
 
 ## GitHub
 
-This folder is the repository. From here:
-
-```text
-git init
-git add .
-git commit -m "Initial Reciplate"
-```
-
-`config.json`, `*.last`, `build/`, `dist/`, and `Reciplate.exe` stay untracked. Push **this folder** as the repository root — not the parent `functional_programs` tree.
+This folder is already its own repository. `local/`, `*.last`, `build/`, `dist/`, and `Reciplate.exe` stay local. Do not push the parent `functional_programs` tree.

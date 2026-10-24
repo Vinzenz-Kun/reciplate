@@ -3,7 +3,7 @@ $root = $PSScriptRoot
 Set-Location -LiteralPath $root
 
 python -m pip install -q -r requirements.txt pyinstaller
-python -m PyInstaller --noconfirm --clean Reciplate.spec
+python -m PyInstaller --noconfirm --clean packaging/Reciplate.spec
 
 $built = Join-Path $root 'dist\Reciplate.exe'
 $dest = Join-Path $root 'Reciplate.exe'

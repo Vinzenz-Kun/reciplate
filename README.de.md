@@ -6,10 +6,12 @@ Aus einem Instagram-Reel (oder einem lokalen PDF) wird ein zweisprachiges LuaLaT
 
 Die Master-Vorlage wird nie überschrieben. Das Programm kopiert sie, füllt nur die Kopien und kompiliert danach. Python 3.10+. Läuft allein; liegt `common/` daneben, kommt die gemeinsame Oberfläche.
 
+Start: `reciplate.py`. Hilfscode in `lib/`, Tests in `tests/`.
+
 ## Einrichtung
 
 ```text
-copy config.example.json config.json
+copy config.example.json local\config.json
 ```
 
 `recipes_root` auf deine Rezepte-Bibliothek setzen (`~/Recipes` im Beispiel wird expandiert). Pfade in `template_tex` / `sections` dürfen relativ zu diesem Root sein. Optional: Umgebungsvariable `RECIPLATE_CONFIG` auf eine andere JSON-Datei.
@@ -19,7 +21,7 @@ pip install -r requirements.txt
 python reciplate.py
 ```
 
-`config.json` ist gitignore. Committe nur `config.example.json` — dort stehen Platzhalter, keine persönlichen Pfade. Lokale PDFs brauchen `pypdf` (steht in `requirements.txt`).
+`local/config.json` ist gitignore. Committe nur `config.example.json` — dort stehen Platzhalter, keine persönlichen Pfade. Lokale PDFs brauchen `pypdf` (steht in `requirements.txt`).
 
 ## Was pro Rezept übrig bleibt
 
@@ -58,17 +60,9 @@ LuaLaTeX muss auf dem Rechner installiert sein (TeX Live oder MiKTeX).
 ## Tests
 
 ```text
-python -m unittest discover -s .
+python -m unittest discover -s tests -t .
 ```
 
 ## GitHub
 
-Dieser Ordner ist das Repository. Von hier:
-
-```text
-git init
-git add .
-git commit -m "Initial Reciplate"
-```
-
-`config.json`, `*.last`, `build/`, `dist/` und `Reciplate.exe` bleiben untracked. **Diesen Ordner** als Repository-Wurzel pushen — nicht die Eltern-Toolbox `functional_programs`.
+Dieser Ordner ist schon ein eigenes Repository. `local/`, `*.last`, `build/`, `dist/` und `Reciplate.exe` bleiben lokal. Die Eltern-Toolbox `functional_programs` nicht mitpushen.

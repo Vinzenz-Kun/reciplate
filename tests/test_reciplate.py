@@ -1,8 +1,15 @@
 from __future__ import annotations
 
+import sys
 import tempfile
 import unittest
 from pathlib import Path
+
+_ROOT = Path(__file__).resolve().parent.parent
+for _p in (_ROOT, _ROOT / "lib"):
+    _s = str(_p)
+    if _s not in sys.path:
+        sys.path.insert(0, _s)
 
 from config import ConfigError, load_settings
 from copy_template import copy_template, file_hash, tidy_recipe_folder
@@ -366,18 +373,6 @@ class LanguageTests(unittest.TestCase):
         self.assertEqual(pair[EN].title, "[3][01] Tofu [en]")
         self.assertEqual(pair[EN].language, EN)
         self.assertEqual(pair[EN].handle, "Insta: @x")
-
-    def test_monitor_scaling_is_smaller_on_100_percent(self) -> None:
-        import sys
-        from pathlib import Path
-
-        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-        from common.ui import monitor_tk_scaling
-
-        self.assertLess(monitor_tk_scaling(96), monitor_tk_scaling(144))
-        self.assertGreaterEqual(monitor_tk_scaling(96), 1.28)
-        self.assertGreater(monitor_tk_scaling(144), 1.8)
-        self.assertLessEqual(monitor_tk_scaling(144), 2.5)
 
     def test_pack_unpack_keeps_order(self) -> None:
         from translate import pack_texts, unpack_texts

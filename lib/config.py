@@ -11,7 +11,11 @@ from pathlib import Path
 def app_dir() -> Path:
     if getattr(sys, "frozen", False):
         return Path(sys.executable).resolve().parent
-    return Path(__file__).resolve().parent
+    here = Path(__file__).resolve().parent
+    for candidate in (here, *here.parents):
+        if (candidate / "reciplate.py").is_file() or (candidate / "config.example.json").is_file():
+            return candidate
+    return here.parent if here.name == "lib" else here
 
 
 def resource_dir() -> Path:
@@ -22,7 +26,14 @@ def resource_dir() -> Path:
 
 
 def default_config_path() -> Path:
-    return app_dir() / "config.json"
+    root = app_dir()
+    if getattr(sys, "frozen", False):
+        return root / "config.json"
+    nested = root / "local" / "config.json"
+    old = root / "config.json"
+    if nested.is_file() or not old.is_file():
+        return nested
+    return old
 
 
 def example_config_path() -> Path:
@@ -80,6 +91,7 @@ def _seed_config_from_example() -> None:
     example = example_config_path()
     if not example.is_file():
         return
+    dest.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(example, dest)
     raise ConfigError(
         f"Created {dest} from the example.\n"

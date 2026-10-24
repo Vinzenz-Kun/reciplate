@@ -6,10 +6,12 @@ Instagramのリール（または手元のPDF）から、ドイツ語と英語�
 
 マスターテンプレートは書き換えません。コピーを作り、そのコピーだけを埋めてからコンパイルします。Python 3.10+。単体で動きます。隣にツールボックスの `common/` があれば、その共通UIを使います。
 
+起動は `reciplate.py`。補助コードは `lib/`、テストは `tests/` です。
+
 ## セットアップ
 
 ```text
-copy config.example.json config.json
+copy config.example.json local\config.json
 ```
 
 `recipes_root` を自分のレシピフォルダに設定します（例の `~/Recipes` は展開されます）。`template_tex` と `sections` のパスは、そのルートからの相対パスで書けます。別のJSONを使う場合は、任意で `RECIPLATE_CONFIG` を指定します。
@@ -19,7 +21,7 @@ pip install -r requirements.txt
 python reciplate.py
 ```
 
-`config.json` は gitignore 済みです。コミットするのは `config.example.json` だけです（個人パスは入れない）。手元のPDFには `pypdf` が必要です（`requirements.txt` に含まれます）。
+`local/config.json` は gitignore 済みです。コミットするのは `config.example.json` だけです（個人パスは入れない）。手元のPDFには `pypdf` が必要です（`requirements.txt` に含まれます）。
 
 ## レシピごとに残るもの
 
@@ -58,17 +60,9 @@ LuaLaTeX（TeX Live または MiKTeX）は別途、そのマシンに入れて�
 ## テスト
 
 ```text
-python -m unittest discover -s .
+python -m unittest discover -s tests -t .
 ```
 
 ## GitHub
 
-このフォルダがリポジトリです。ここから:
-
-```text
-git init
-git add .
-git commit -m "Initial Reciplate"
-```
-
-`config.json`、`*.last`、`build/`、`dist/`、`Reciplate.exe` は追跡しません。**このフォルダ**をリポジトリのルートとして push してください。親の `functional_programs` 一式は上げないでください。
+このフォルダはすでに単独のリポジトリです。`local/`、`*.last`、`build/`、`dist/`、`Reciplate.exe` はローカルのまま。親の `functional_programs` は push しないでください。

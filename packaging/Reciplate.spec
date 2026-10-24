@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_all
 
-datas = [('config.example.json', '.')]
+datas = [('../config.example.json', '.')]
 binaries = []
 hiddenimports = [
     'config',
@@ -28,8 +28,8 @@ for package in ('yt_dlp', 'curl_cffi'):
     hiddenimports += collected[2]
 
 a = Analysis(
-    ['reciplate.py'],
-    pathex=[],
+    ['../reciplate.py'],
+    pathex=['..', '../lib'],
     binaries=binaries,
     datas=datas,
     hiddenimports=hiddenimports,

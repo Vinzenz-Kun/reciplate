@@ -9,6 +9,12 @@ import threading
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
+_ROOT = Path(__file__).resolve().parent
+for _p in (_ROOT, _ROOT / "lib", _ROOT.parent):
+    _s = str(_p)
+    if _s not in sys.path:
+        sys.path.insert(0, _s)
+
 from config import ConfigError, Settings, load_settings
 from copy_template import copy_template, file_hash, tidy_recipe_folder
 from download import DownloadError, download_media, fetch_info
@@ -34,7 +40,8 @@ MUTED = "#b7a89b"
 ACCENT = "#d36b38"
 LINE = "#3f352d"
 APP_NAME = "Reciplate"
-SESSION = Path(__file__).with_name("reciplate.last")
+SESSION = _ROOT / "local" / "reciplate.last"
+SESSION.parent.mkdir(parents=True, exist_ok=True)
 
 _FONT = "Segoe UI"
 _BODY = 12
