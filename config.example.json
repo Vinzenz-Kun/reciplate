@@ -1,0 +1,12 @@
+{
+  "recipes_root": "~/Recipes",
+  "template_tex": "ignore/LaTeX/recipe.tex",
+  "sticker": "ignore/LaTeX/img/sticker-homemade.png",
+  "sections": {
+    "Kochen": "[1]Kochen",
+    "Backen": "[1]Backen"
+  },
+  "default_section": "Kochen",
+  "cookies_from_browser": "",
+  "folder_code": 3
+}

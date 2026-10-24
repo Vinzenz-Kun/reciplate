@@ -1,0 +1,5 @@
+deep-translator
+yt-dlp
+curl_cffi
+Pillow
+pypdf
