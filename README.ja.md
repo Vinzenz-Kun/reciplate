@@ -6,7 +6,7 @@ Instagramのリール（または手元のPDF）から、ドイツ語と英語�
 
 マスターテンプレートは書き換えません。コピーを作り、そのコピーだけを埋めてからコンパイルします。Python 3.10+。単体で動きます。隣にツールボックスの `common/` があれば、その共通UIを使います。
 
-起動は `reciplate.py`。補助コードは `lib/`、テストは `tests/` です。
+起動は `reciplate.py`（レシピフォルダを作る）。ギャラリーは `media_overview.py`（Kochen / Backen などのセクション、または一つのセクション）。補助コードは `lib/`、テストは `tests/` です。
 
 ## セットアップ
 
@@ -46,6 +46,17 @@ Fetch、ダウンロード、翻訳、コンパイルはバックグラウンド
 言語は本文から判定し、両方のシートに印字します（`Video: Deutsch (Original)` など）。
 
 翻訳は MyMemory、だめなら Google Translate（`deep-translator` があればそれ、なければ公開HTTP API）。
+
+## Media Overview
+
+同じレシピライブラリ用の補助ウィンドウです。`recipes_root`（または一つのセクション）を指定します。チェックしたサブフォルダが隣に `Name.html` になります。検索、カード上の動画、クリックで PDF レシピ全体。
+
+```text
+python media_overview.py
+python media_overview.py "D:\Recipes"
+```
+
+任意のサムネ: `PyMuPDF`、`opencv-python`。無くてもウィンドウは開きます。DOCX だけのフォルダは Word / LibreOffice が隣に PDF を作れます。`ignore/` は除外、サムネは `images/`。
 
 ## EXE（Windows）
 

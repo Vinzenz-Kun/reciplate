@@ -6,7 +6,7 @@ Turn an Instagram reel (or a local PDF) into a bilingual LuaLaTeX recipe: German
 
 The master template is never written. The program copies it, fills the copies, then compiles. Python 3.10+. Works on its own; if the toolbox `common/` folder sits next to this one, Reciplate uses that shared UI.
 
-Start `reciplate.py`. Helpers live in `lib/`, tests in `tests/`.
+Start `reciplate.py` to make a recipe folder. Start `media_overview.py` for HTML galleries of those folders (sections like Kochen/Backen, or one section). Helpers live in `lib/`, tests in `tests/`.
 
 ## Setup
 
@@ -46,6 +46,17 @@ Fetch, download, translate, and compile run in the background so the window stay
 Language is detected from the text and printed on both sheets (`Video: Deutsch (Original)`, …).
 
 Translation uses MyMemory, then Google Translate (`deep-translator` if installed, otherwise the public HTTP APIs). Ingredients in the window can be plain lines — dashes are optional; `Für die Panade` starts a group.
+
+## Media Overview
+
+Companion window for the same recipe library. Point it at `recipes_root` (or at one section). Checked subfolders become `Name.html` next to them: search, video on the card, click for the whole PDF recipe.
+
+```text
+python media_overview.py
+python media_overview.py "D:\Recipes"
+```
+
+Optional thumbs: `PyMuPDF`, `opencv-python`. The window still opens without them. Word or LibreOffice can print a PDF beside a DOCX-only folder. `ignore/` is skipped; thumbs land in `images/`.
 
 ## EXE (Windows)
 

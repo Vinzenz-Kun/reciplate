@@ -7,6 +7,10 @@ build/
 dist/
 Reciplate.exe
 RecipeInbox.exe
+MedienUebersicht.exe
+MediaOverview.exe
+images/
+MedienUebersicht.log
 *.spec.bak
 .pytest_cache/
 .DS_Store

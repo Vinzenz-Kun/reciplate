@@ -6,7 +6,7 @@ Aus einem Instagram-Reel (oder einem lokalen PDF) wird ein zweisprachiges LuaLaT
 
 Die Master-Vorlage wird nie überschrieben. Das Programm kopiert sie, füllt nur die Kopien und kompiliert danach. Python 3.10+. Läuft allein; liegt `common/` daneben, kommt die gemeinsame Oberfläche.
 
-Start: `reciplate.py`. Hilfscode in `lib/`, Tests in `tests/`.
+Start: `reciplate.py` legt Rezeptordner an. `media_overview.py` baut HTML-Galerien davon (Abschnitte wie Kochen/Backen, oder ein einzelner Abschnitt). Hilfscode in `lib/`, Tests in `tests/`.
 
 ## Einrichtung
 
@@ -46,6 +46,17 @@ Fetch, Download, Übersetzung und Compile laufen im Hintergrund. Tracking-Parame
 Die Sprache wird aus dem Text erkannt und auf beiden Blättern vermerkt (`Video: Deutsch (Original)`, …).
 
 Übersetzung: MyMemory, dann Google Translate (`deep-translator` oder öffentliche HTTP-APIs).
+
+## Media Overview
+
+Begleitfenster für dieselbe Rezepte-Bibliothek. `recipes_root` wählen (oder einen Abschnitt). Angehakte Unterordner werden zu `Name.html`: Suche, Video auf der Karte, Klick zeigt das ganze PDF-Rezept.
+
+```text
+python media_overview.py
+python media_overview.py "D:\Rezepte"
+```
+
+Optionale Vorschaubilder: `PyMuPDF`, `opencv-python`. Das Fenster öffnet sich auch ohne. Word oder LibreOffice kann neben einer reinen DOCX eine PDF drucken. `ignore/` fällt raus; Thumbs liegen in `images/`.
 
 ## EXE (Windows)
 
